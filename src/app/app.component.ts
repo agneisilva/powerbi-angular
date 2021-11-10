@@ -22,19 +22,20 @@ export class AppComponent {
           console.log(config);
 
           this.config = config;
-          const model = window['powerbi-client'].models;
-          // const embedConfig = {
-          //   type: 'report',
-          //   tokenType: model.TokenType.Embed,
-          //   accessToken: config.token,
-          //   embedUrl: config.embedURL,
-          //   permissions: model.Permissions.All,
-          //   settings: {
-          //     filterPaneEnabled: true,
-          //     navContentPaneEnabled: true,
-          //   },
-          // };
-          // powerbi.embed(this.embeddedReport.nativeElement, embedConfig);
+          //const model = window['powerbi-client'].models;
+          const embedConfig = {
+            type: 'report',
+            tokenType: 'Embed',
+            accessToken: config.embedToken.token,
+            embedUrl: config.embedUrl,
+            permissions: 'View',
+            settings: {
+              filterPaneEnabled: true,
+              navContentPaneEnabled: true,
+            },
+          };
+          console.log(embedConfig);
+          this.powerbi.embed(this.embeddedReport.nativeElement, embedConfig);
         },
         (er) => {
           console.log('Erro');
